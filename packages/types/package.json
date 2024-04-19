@@ -4,17 +4,23 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist && rm -rf node_modules"
   },
   "keywords": [],
   "exports": {
-    ".": ["./src/index.ts"],
-    "./*": ["./src/*.ts"]
+    ".": [
+      "./src/index.ts"
+    ],
+    "./*": [
+      "./src/*.ts"
+    ]
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@repo/typescript-config": "workspace:^",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "typescript": "^5.3.3"
   }
 }

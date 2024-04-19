@@ -27,8 +27,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@repo/types": "workspace:^",
-    "@repo/typescript-config": "workspace:^",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "typescript": "^5.3.3"
   },
   "dependencies": {

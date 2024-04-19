@@ -1,14 +1,12 @@
-import { TBasicItem, TPokemon, TPokemonStat } from "@repo/types";
+import type { TPokemon, TPokemonDetails, TPokemonStat } from "@repo/types";
 
-export const parsePokemonId = (url: string) => {
-  const idStr = url.match(/\/(\d+)\//)?.[1];
+export const parsePokemonId = (url: string): number | undefined => {
+  const idStr = /\/(\d+)\//.exec(url)?.[1];
   const id = idStr ? Number(idStr) : undefined;
   return id;
 };
 
-export const getPokemonImage = (item: TBasicItem) => {
-  const { url } = item;
-  const id = parsePokemonId(url);
+export const getPokemonImage = (id: number): string => {
   const isPokemonHasSvg = id && id < 650;
   const base = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other`;
 
@@ -23,13 +21,9 @@ export const removeHyphens = (str: string): string => {
   return str.replace(/-/g, " ");
 };
 
-/**
- * Formats the stats array obtained from the API into a well-structured object for easier usage.
- *
- * @param {Array} stats - The stats array obtained from the API.
- * @returns {Array} - The formatted stats array.
- */
-export function formatStats(stats: Array<TPokemonStat>) {
+export function formatStats(
+  stats: TPokemonStat[],
+): { name: string; value: number; max: number }[] {
   const statsMaxValues = {
     hp: 714,
     attack: 714,
@@ -47,29 +41,45 @@ export function formatStats(stats: Array<TPokemonStat>) {
     };
   });
 
-  const total = stats.reduce((total, { base_stat }) => total + base_stat, 0);
+  const totalValue = stats.reduce(
+    (total, { base_stat }) => total + base_stat,
+    0,
+  );
 
-  return [...statsObject, { name: "total", value: total }];
+  return [
+    ...statsObject,
+    { name: "total", value: totalValue, max: totalValue },
+  ];
 }
 
-export const formatPokemonData = (pokemon: TPokemon) => {
+export const formatPokemonData = (pokemon: TPokemon): TPokemonDetails => {
   const { id, name, sprites, weight, height, types } = pokemon;
 
   const weightInKg = weight / 10;
   const heightInMeter = height / 10;
   const paddedId = String(id).padStart(3, "0");
   const formattedTypes = types.map(({ type }) => type);
+  const formattedStats = formatStats(pokemon.stats);
   const pokemonImg =
     sprites.other.dream_world.front_default ||
     sprites.other["official-artwork"].front_default;
 
   return {
-    ...pokemon,
+    id: pokemon.id,
+    order: pokemon.order,
+    species: pokemon.species,
+    sprites: pokemon.sprites,
+    is_default: pokemon.is_default,
+    abilities: pokemon.abilities,
+    base_experience: pokemon.base_experience,
+    cries: pokemon.cries,
+    forms: pokemon.forms,
     paddedId,
     weight: weightInKg,
     imgSrc: pokemonImg,
     height: heightInMeter,
     types: formattedTypes,
+    stats: formattedStats,
     name: removeHyphens(name),
   };
 };

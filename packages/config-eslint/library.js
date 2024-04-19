@@ -34,4 +34,8 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/"],
+  rules: {
+    "prefer-named-capture-group": "off",
+    camelcase: "off",
+  },
 };

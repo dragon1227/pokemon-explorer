@@ -1,1 +1,1 @@
-export const CPokemonBaseUrl: string = "https://pokeapi.co/api/v2";
+export const CPokemonBaseUrl = "https://pokeapi.co/api/v2";
