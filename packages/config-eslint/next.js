@@ -40,8 +40,14 @@ module.exports = {
   ignorePatterns: ["node_modules/", "dist/"],
   // add rules configurations here
   rules: {
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "import/no-default-export": "off",
-    "no-unused-vars": "warning",
-    "@typescript-eslint/no-unused-vars": "warning",
+    "no-nested-ternary": "off",
+    "no-unused-vars": "off",
+    "react/hook-use-state": ["warn", { allowDestructuredState: true }],
+    "react/button-has-type": "off",
   },
 };

@@ -1,6 +1,5 @@
-import { CPokemonBaseUrl, parsePokemonId } from "@repo/utils";
+import { CPokemonBaseUrl } from "@repo/utils";
 import type {
-  TBasicItem,
   TPokemon,
   TPokemonAPIPaginatedRequest,
   TPokemonAPIPaginatedResponse,
@@ -24,9 +23,7 @@ export async function getPokemonListRequest(
     });
 }
 
-export async function getPokemonDetailsRequest(item: TBasicItem) {
-  const { url } = item;
-  const id = parsePokemonId(url);
+export async function getPokemonDetailsRequest(id: number): Promise<TPokemon> {
   if (!id) throw new Error("Invalid Pokemon ID");
   return fetch(`${CPokemonBaseUrl}/pokemon/${id}`).then(async (response) => {
     return (await response.json()) as Promise<TPokemon>;

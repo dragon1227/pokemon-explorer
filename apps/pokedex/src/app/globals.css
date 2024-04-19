@@ -6,6 +6,25 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --pokemon-type-bg-bug: #8cb230;
+  --pokemon-type-bg-dark: #58575f;
+  --pokemon-type-bg-dragon: #0f6ac0;
+  --pokemon-type-bg-electric: #eed535;
+  --pokemon-type-bg-fairy: #ed6ec7;
+  --pokemon-type-bg-fighting: #d04164;
+  --pokemon-type-bg-fire: #f05032;
+  --pokemon-type-bg-flying: #a890f0;
+  --pokemon-type-bg-ghost: #735797;
+  --pokemon-type-bg-grass: #7ac74c;
+  --pokemon-type-bg-ground: #dd7748;
+  --pokemon-type-bg-ice: #61cec0;
+  --pokemon-type-bg-normal: #9da0aa;
+  --pokemon-type-bg-poison: #a552cc;
+  --pokemon-type-bg-psychic: #ea5d60;
+  --pokemon-type-bg-rock: #baab82;
+  --pokemon-type-bg-steel: #417d9a;
+  --pokemon-type-bg-water: #4a90da;
 }
 
 .dark:root {
@@ -21,5 +40,5 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)) no-repeat center center fixed;
 }

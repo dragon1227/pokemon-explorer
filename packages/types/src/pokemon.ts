@@ -1,4 +1,4 @@
-import { TBasicItem } from "./response";
+import type { TBasicItem } from "./response";
 
 export enum TPokemonStatEnum {
   HP = "hp",
@@ -9,16 +9,16 @@ export enum TPokemonStatEnum {
   Speed = "speed",
 }
 
-export type TPokemonStat = {
+export interface TPokemonStat {
   base_stat: number;
   effort: number;
   stat: {
     name: TPokemonStatEnum;
     url: string;
   };
-};
+}
 
-export type TSprite = {
+export interface TSprite {
   back_default: string;
   back_female?: string;
   back_shiny: string;
@@ -27,7 +27,7 @@ export type TSprite = {
   front_female?: string;
   front_shiny: string;
   front_shiny_female?: string;
-};
+}
 
 export enum TPokemonTypeEnum {
   Normal = "normal",
@@ -52,7 +52,7 @@ export enum TPokemonTypeEnum {
   Shadow = "shadow",
 }
 
-export type TPokemon = {
+export interface TPokemon {
   id: number;
   name: string;
   order: number;
@@ -81,6 +81,26 @@ export type TPokemon = {
     legacy: string;
   };
   forms: TBasicItem[];
+  stats: TPokemonStat[];
   height: number;
   weight: number;
-};
+}
+
+export interface TPokemonDetails {
+  id: number;
+  order: number;
+  species: TPokemon["species"];
+  sprites: TPokemon["sprites"];
+  is_default: TPokemon["is_default"];
+  types: TBasicItem<TPokemonTypeEnum>[];
+  abilities: TPokemon["abilities"];
+  base_experience: TPokemon["base_experience"];
+  cries: TPokemon["cries"];
+  forms: TPokemon["forms"];
+  stats: { name: string; value: number; max: number }[];
+  height: TPokemon["height"];
+  weight: TPokemon["weight"];
+  imgSrc?: string;
+  name: string;
+  paddedId: string;
+}

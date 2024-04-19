@@ -37,6 +37,12 @@ module.exports = {
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "no-nested-ternary": "off",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/hook-use-stat": ["warn", { allowDestructuredState: true }],
+    "@typescript-eslint/naming-convention": "off",
+    "react/hook-use-stat": "off",
   },
   overrides: [
     {
