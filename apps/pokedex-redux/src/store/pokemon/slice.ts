@@ -11,6 +11,7 @@ export interface IPokemonState {
   limit: number;
   hasNext: boolean;
   hasPrev: boolean;
+  total: number;
 }
 
 const pokemonInitialState: IPokemonState = {
@@ -19,9 +20,10 @@ const pokemonInitialState: IPokemonState = {
   isLoading: false,
   error: null,
   page: 1,
-  limit: 12,
+  limit: 10,
   hasNext: true,
   hasPrev: false,
+  total: 0,
 };
 
 const pokemonSlice = createSlice({
@@ -36,10 +38,12 @@ const pokemonSlice = createSlice({
     },
     setPagination: (
       state,
-      action: PayloadAction<{ page: number; limit: number }>,
+      action: PayloadAction<{ page: number; limit: number; total?: number }>,
     ) => {
       state.page = action.payload.page;
       state.limit = action.payload.limit;
+      if (action.payload.total && action.payload.total > 0)
+        state.total = action.payload.total;
     },
   },
   extraReducers: (builder) => {

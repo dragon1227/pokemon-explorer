@@ -14,6 +14,7 @@ export const fetchPokemons = createAsyncThunk<
     message: string | undefined;
     hasNext: boolean;
     hasPrev: boolean;
+    total: number;
   },
   { page: number; limit: number }
 >(POKEMON_ACTION.FETCH, async ({ page = 1, limit = 12 }, { dispatch }) => {
@@ -22,11 +23,13 @@ export const fetchPokemons = createAsyncThunk<
     const offset = (page - 1) * limit;
     const res = await getPokemonListRequest({ offset, limit });
     if (!res) throw new Error("Fetch failed");
+    dispatch(setPagination({ page, limit, total: res.count }));
     return {
       results: res.results,
       message: undefined,
       hasNext: res.next !== null,
       hasPrev: res.previous !== null,
+      total: res.count,
     };
   } catch (err: unknown) {
     return {
@@ -35,6 +38,7 @@ export const fetchPokemons = createAsyncThunk<
       message: err.message,
       hasNext: false,
       hasPrev: false,
+      total: 0,
     };
   }
 });
