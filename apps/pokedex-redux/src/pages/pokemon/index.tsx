@@ -1,19 +1,17 @@
+import Button from "@repo/ui/components/common/button";
+import { useEffect } from "react";
 import useAppSelector from "@/hooks/use-app-selector";
 import { fetchPokemons } from "@/store/pokemon/thunk";
 import PokemonCardWrapper from "@/components/pokemon/pokemon-card";
-import Button from "@repo/ui/components/common/button";
 import useAppDispatch from "@/hooks/use-app-dispatch";
-import { useEffect } from "react";
 
 
-const Home = () => {
+function Home() {
   const { items, isLoading, error, page, limit, hasNext, hasPrev } = useAppSelector((state) => state.pokemon)
   const dispatch = useAppDispatch()
-  useEffect(() => {
-    if (!items) {
-      dispatch(fetchPokemons({ page, limit }))
-    }
-  }, [])
+  if (!items) {
+    dispatch(fetchPokemons({ page, limit }))
+  }
   return (
     <div className="relative flex flex-col place-items-center p-4 mt-4">
       <div className="">

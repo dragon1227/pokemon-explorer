@@ -1,10 +1,12 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TBasicItem, TPokemonDetails } from "@repo/types";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { TBasicItem, TPokemonDetails } from "@repo/types";
+// eslint-disable-next-line import/no-cycle -- mixed definitions
 import { fetchPokemons, fetchPokemonDetail } from "./thunk";
 
 export interface IPokemonState {
   pokemons: Record<number, TPokemonDetails>;
-  items: Array<TBasicItem> | null;
+  items: TBasicItem[] | null;
   isLoading: boolean;
   error: string | null;
   page: number;
@@ -32,9 +34,6 @@ const pokemonSlice = createSlice({
   reducers: {
     addPokemon: (state, action: PayloadAction<TPokemonDetails>) => {
       state.pokemons[action.payload.id] = action.payload;
-    },
-    removePokemon: (state, action: PayloadAction<number>) => {
-      delete state.pokemons[action.payload];
     },
     setPagination: (
       state,
@@ -71,7 +70,6 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const { addPokemon, removePokemon, setPagination } =
-  pokemonSlice.actions;
+export const { addPokemon, setPagination } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

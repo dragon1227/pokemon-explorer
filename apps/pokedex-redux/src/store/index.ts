@@ -1,4 +1,5 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import type { ThunkAction, Action } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import reducers from "./reducers";
 

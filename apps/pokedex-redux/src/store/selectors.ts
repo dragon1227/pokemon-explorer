@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { IPokemonState } from "./pokemon/slice";
-import { IStoreState } from "./reducers";
+import type { IPokemonState } from "./pokemon/slice";
+import type { IStoreState } from "./reducers";
 
 export const getPokemonState = (state: IPokemonState) => state.pokemons;
 

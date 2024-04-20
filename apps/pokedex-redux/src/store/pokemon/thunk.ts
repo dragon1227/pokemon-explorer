@@ -1,11 +1,12 @@
+/* eslint-disable import/no-cycle -- mixed definition */
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { TBasicItem, TPokemonDetails } from "@repo/types";
+import type { TBasicItem, TPokemonDetails } from "@repo/types";
 import { formatPokemonData } from "@repo/utils";
-import { POKEMON_ACTION } from "./actions";
 import {
   getPokemonListRequest,
   getPokemonDetailsRequest,
 } from "@/lib/requests/pokemon-request";
+import { POKEMON_ACTION } from "./actions";
 import { setPagination } from "./slice";
 
 export const fetchPokemons = createAsyncThunk<

@@ -1,6 +1,7 @@
 import { AnyAction, combineReducers } from "@reduxjs/toolkit";
-import pokemon, { IPokemonState } from "./pokemon/slice";
 import { HYDRATE } from "next-redux-wrapper";
+import type { IPokemonState } from "./pokemon/slice";
+import pokemon from "./pokemon/slice";
 
 export interface IStoreState {
   pokemon: IPokemonState;
@@ -14,10 +15,10 @@ const reducers: typeof combinedReducer = (state, action) => {
       ...state,
       ...action.payload,
     };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- no need to worry
     return nextState;
-  } else {
-    return combinedReducer(state, action);
   }
+  return combinedReducer(state, action);
 };
 
 export default reducers;

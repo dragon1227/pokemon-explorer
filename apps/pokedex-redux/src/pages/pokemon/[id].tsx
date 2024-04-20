@@ -1,12 +1,12 @@
 'use client';
 
-import useAppDispatch from '@/hooks/use-app-dispatch';
-import useAppSelector from '@/hooks/use-app-selector';
-import { fetchPokemonDetail } from '@/store/pokemon/thunk';
 import PokemonDetailCardComponent from '@repo/ui/components/pokemon/pokemon-detail-card';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
+import { fetchPokemonDetail } from '@/store/pokemon/thunk';
+import useAppSelector from '@/hooks/use-app-selector';
+import useAppDispatch from '@/hooks/use-app-dispatch';
 
 export default function PokemonPage() {
   const router = useRouter()
@@ -16,7 +16,6 @@ export default function PokemonPage() {
   const dispatch = useAppDispatch()
 
   const details = useMemo(() => {
-    if (!pokemons) return undefined;
     return !id ? undefined : pokemons[id]
   }, [pokemons, id])
 
@@ -24,7 +23,7 @@ export default function PokemonPage() {
     if (id) {
       if (!details) dispatch(fetchPokemonDetail(id))
     }
-  }, [id])
+  }, [id, details, dispatch])
 
   const onBackClick = () => {
     router.push('/')
@@ -33,12 +32,12 @@ export default function PokemonPage() {
     <div className="flex flex-col justify-center items-center w-screen min-h-screen p-4">
       {!details ? (
         <>Loading</>
-      ) : details ? (
+      ) : (
         <PokemonDetailCardComponent
           details={details}
           onBackClick={onBackClick}
         />
-      ) : null}
+      )}
     </div>
   );
 }
