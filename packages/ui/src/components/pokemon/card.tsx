@@ -1,9 +1,9 @@
 import { useMemo } from "react"
-import { TPokemonTypeEnum, type TBasicItem, type TPokemon } from "@repo/types"
-import { formatPokemonData, getPokemonImage, parsePokemonId } from "@repo/utils"
+import { type TPokemonDetails, TPokemonTypeEnum, type TBasicItem } from "@repo/types"
+import { getPokemonImage, parsePokemonId } from "@repo/utils"
 import PokemonTypeTagComponent, { pokemonTypeStyleVariants } from "./type"
 
-export default function PokemonCardComponent({ item, data, isLoading }: { item: TBasicItem, data?: TPokemon | null, isLoading: boolean }): JSX.Element {
+export default function PokemonCardComponent({ item, itemDetails, isLoading }: { item: TBasicItem, itemDetails?: TPokemonDetails | null, isLoading: boolean }): JSX.Element {
 
   const id = useMemo(() => {
     return parsePokemonId(item.url)
@@ -12,10 +12,6 @@ export default function PokemonCardComponent({ item, data, isLoading }: { item: 
     if (!id) return undefined
     return getPokemonImage(id)
   }, [id])
-  const itemDetails = useMemo(() => {
-    if (!data) return undefined
-    return formatPokemonData(data)
-  }, [data])
   const itemType = useMemo(() => {
     return (itemDetails?.types[0]) ? itemDetails.types[0].name : TPokemonTypeEnum.Unknown
   }, [itemDetails])

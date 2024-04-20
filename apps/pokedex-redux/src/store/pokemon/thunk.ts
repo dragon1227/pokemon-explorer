@@ -1,0 +1,53 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { TBasicItem, TPokemonDetails } from "@repo/types";
+import { formatPokemonData } from "@repo/utils";
+import { POKEMON_ACTION } from "./actions";
+import {
+  getPokemonListRequest,
+  getPokemonDetailsRequest,
+} from "@/lib/requests/pokemon-request";
+import { setPagination } from "./slice";
+
+export const fetchPokemons = createAsyncThunk<
+  {
+    results: TBasicItem[] | undefined;
+    message: string | undefined;
+    hasNext: boolean;
+    hasPrev: boolean;
+  },
+  { page: number; limit: number }
+>(POKEMON_ACTION.FETCH, async ({ page = 1, limit = 12 }, { dispatch }) => {
+  try {
+    dispatch(setPagination({ page, limit }));
+    const offset = (page - 1) * limit;
+    const res = await getPokemonListRequest({ offset, limit });
+    if (!res) throw new Error("Fetch failed");
+    return {
+      results: res.results,
+      message: undefined,
+      hasNext: res.next !== null,
+      hasPrev: res.previous !== null,
+    };
+  } catch (err: unknown) {
+    return {
+      results: undefined,
+      // @ts-expect-error
+      message: err.message,
+      hasNext: false,
+      hasPrev: false,
+    };
+  }
+});
+
+export const fetchPokemonDetail = createAsyncThunk<
+  TPokemonDetails | null,
+  number
+>(POKEMON_ACTION.FETCH_DETAILS, async (id, { dispatch }) => {
+  try {
+    const pokemonData = await getPokemonDetailsRequest(id);
+    const details = formatPokemonData(pokemonData);
+    return details;
+  } catch (err: unknown) {
+    return null;
+  }
+});

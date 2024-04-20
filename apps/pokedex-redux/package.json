@@ -1,9 +1,9 @@
 {
-  "name": "web",
-  "version": "1.0.0",
+  "name": "pokedex-redux",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo --port=3001",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,20 +11,28 @@
     "clean": "rm -rf .next && rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
+    "@mui/styled-engine-sc": "6.0.0-alpha.18",
+    "@mui/x-data-grid": "^7.3.0",
+    "@reduxjs/toolkit": "^1.8.2",
     "@repo/ui": "workspace:*",
-    "@repo/utils": "workspace:*",
-    "@tanstack/react-query": "^5.29.2",
-    "@tanstack/react-query-devtools": "^5.29.2",
-    "axios-cache-interceptor": "^1.5.1",
+    "@repo/utils": "workspace:^",
     "next": "^14.1.1",
+    "next-redux-wrapper": "^8.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.1",
+    "redux-thunk": "^3.1.0",
+    "styled-components": "^6.1.8",
+    "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
-    "@repo/types": "workspace:^",
+    "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
