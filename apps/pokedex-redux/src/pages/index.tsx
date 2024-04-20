@@ -14,9 +14,11 @@ import useAppDispatch from '@/hooks/use-app-dispatch';
 export default function IndexPage() {
   const { items, pokemons, page, limit, hasNext, hasPrev, isLoading, total } = useAppSelector((state) => state.pokemon)
   const dispatch = useAppDispatch()
-  if (!items) {
-    dispatch(fetchPokemons({ page, limit }))
-  }
+  useEffect(() => {
+    if (!items) {
+      dispatch(fetchPokemons({ page, limit }))
+    }
+  }, [])
   useEffect(() => {
     if (items) {
       items.forEach((item) => {

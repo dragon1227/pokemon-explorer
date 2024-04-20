@@ -29,7 +29,7 @@ export default function PokemonPage() {
     router.push('/')
   }
   return (
-    <div className="flex flex-col justify-center items-center w-screen min-h-screen p-4">
+    <div className="flex flex-col justify-center items-center w-screen flex-1 p-4">
       {!details ? (
         <>Loading</>
       ) : (
