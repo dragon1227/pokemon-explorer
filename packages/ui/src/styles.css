@@ -25,4 +25,7 @@
   --pokemon-type-bg-rock: #baab82;
   --pokemon-type-bg-steel: #417d9a;
   --pokemon-type-bg-water: #4a90da;
+  --pokemon-type-bg-shadow: #222222;
+  --pokemon-type-bg-unknown: #666666;
+  --pokemon-type-bg-physical: #342300;
 }

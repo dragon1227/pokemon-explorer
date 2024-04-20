@@ -5,18 +5,26 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { usePokemon } from "@/hooks/use-pokemon";
 
-export default function PokemonCardWrapper({ item }: { item: TBasicItem }): JSX.Element {
+export default function PokemonCardWrapper({
+  item,
+}: {
+  item: TBasicItem;
+}): JSX.Element {
   const id = useMemo(() => {
-    return parsePokemonId(item.url)
-  }, [item])
-  const { data, isPending } = usePokemon(id)
+    return parsePokemonId(item.url);
+  }, [item]);
+  const { data, isPending } = usePokemon(id);
   const itemDetails = useMemo(() => {
-    if (!data) return undefined
-    return formatPokemonData(data)
-  }, [data])
+    if (!data) return undefined;
+    return formatPokemonData(data);
+  }, [data]);
   return (
     <Link href={`/pokemon/${id}`}>
-      <PokemonCardComponent isLoading={isPending} item={item} itemDetails={itemDetails} />
+      <PokemonCardComponent
+        isLoading={isPending}
+        item={item}
+        itemDetails={itemDetails}
+      />
     </Link>
-  )
+  );
 }
