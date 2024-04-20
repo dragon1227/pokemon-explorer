@@ -16,7 +16,7 @@ export default function PokemonCardComponent({ item, itemDetails, isLoading }: {
     return (itemDetails?.types[0]) ? itemDetails.types[0].name : TPokemonTypeEnum.Unknown
   }, [itemDetails])
 
-  return (<div className="w-full border border-slate-300 rounded-3xl p-4 hover:shadow-xl group flex flex-col items-center">
+  return (<div className="w-full border border-slate-300 dark:border-slate-600 dark:text-white rounded-3xl p-4 hover:shadow-xl group flex flex-col items-center">
     { }
     <div className={`w-full mb-2 rounded-2xl h-16 ${pokemonTypeStyleVariants[itemType]}`}>
       <img alt={item.name} className="object-contain group-hover:scale-110 transition-transform w-24 h-24 -translate-y-8" src={imgSrc} />
