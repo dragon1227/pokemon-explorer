@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
+import type { TBasicItem } from "@repo/types";
 import { QUERY_KEYS } from "@/config/const";
 import { getPokemonListRequest } from "@/lib/requests/pokemon-request";
-import { TBasicItem } from "@repo/types";
 
 export const usePokemons = ({
   limit,
