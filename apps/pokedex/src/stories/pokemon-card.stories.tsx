@@ -7,15 +7,25 @@ import { TPokemonDetails } from "@repo/types";
 const meta: Meta<typeof PokemonCardComponent> = {
   title: "UI/Pokemon/PokemonCard",
   component: PokemonCardComponent,
-  tags: ['autodocs'],
-  decorators: [((Story) => <div style={{
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "auto",
-    margin: "auto"
-  }}><div><Story /></div></div>)]
+  tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "auto",
+          margin: "auto",
+        }}
+      >
+        <div>
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 };
 
 export default meta;

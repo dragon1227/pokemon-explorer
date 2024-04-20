@@ -7,29 +7,33 @@ import { fetchPokemonDetail } from "@/store/pokemon/thunk";
 import useAppSelector from "@/hooks/use-app-selector";
 import useAppDispatch from "@/hooks/use-app-dispatch";
 
-export default function PokemonCardWrapper({ item }: { item: TBasicItem }): JSX.Element {
-  const { pokemons } = useAppSelector((state) => state.pokemon)
-  const dispatch = useAppDispatch()
+export default function PokemonCardWrapper({
+  item,
+}: {
+  item: TBasicItem;
+}): JSX.Element {
+  const { pokemons } = useAppSelector((state) => state.pokemon);
+  const dispatch = useAppDispatch();
   const id = useMemo(() => {
-    return parsePokemonId(item.url)
-  }, [item])
-  const data = id ? pokemons[id] : undefined
+    return parsePokemonId(item.url);
+  }, [item]);
+  const data = id ? pokemons[id] : undefined;
   const fetchData = (params: number) => {
-    (async () => {
-      await dispatch(fetchPokemonDetail(params))
-    })
-  }
+    async () => {
+      await dispatch(fetchPokemonDetail(params));
+    };
+  };
   useEffect(() => {
     if (id && !data) {
-      fetchData(id)
+      fetchData(id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- no need to define callback
-  }, [id, data])
+  }, [id, data]);
   return (
     <Link href={`/pokemon/${id}`}>
       <PokemonCardComponent isLoading={false} item={item} itemDetails={data} />
     </Link>
-  )
+  );
 }
 
 function async(arg0: () => void) {

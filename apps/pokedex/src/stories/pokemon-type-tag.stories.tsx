@@ -6,15 +6,25 @@ import PokemonTypeTagComponent from "@repo/ui/components/pokemon/type";
 const meta: Meta<typeof PokemonTypeTagComponent> = {
   title: "UI/Pokemon/PokemonTypeTag",
   component: PokemonTypeTagComponent,
-  tags: ['autodocs'],
-  decorators: [((Story) => <div style={{
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "auto",
-    margin: "auto"
-  }}><div><Story /></div></div>)]
+  tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "auto",
+          margin: "auto",
+        }}
+      >
+        <div>
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -23,7 +33,7 @@ type Story = StoryObj<typeof PokemonTypeTagComponent>;
 
 export const Normal: Story = {
   args: {
-    type: TPokemonTypeEnum.Normal
+    type: TPokemonTypeEnum.Normal,
   },
   parameters: {
     controls: { expanded: true },
@@ -32,7 +42,7 @@ export const Normal: Story = {
 
 export const Fighting: Story = {
   args: {
-    type: TPokemonTypeEnum.Fighting
+    type: TPokemonTypeEnum.Fighting,
   },
   parameters: {
     controls: { expanded: true },
@@ -41,7 +51,7 @@ export const Fighting: Story = {
 
 export const Flying: Story = {
   args: {
-    type: TPokemonTypeEnum.Flying
+    type: TPokemonTypeEnum.Flying,
   },
   parameters: {
     controls: { expanded: true },
@@ -50,7 +60,7 @@ export const Flying: Story = {
 
 export const Poison: Story = {
   args: {
-    type: TPokemonTypeEnum.Poison
+    type: TPokemonTypeEnum.Poison,
   },
   parameters: {
     controls: { expanded: true },
@@ -59,7 +69,7 @@ export const Poison: Story = {
 
 export const Ground: Story = {
   args: {
-    type: TPokemonTypeEnum.Ground
+    type: TPokemonTypeEnum.Ground,
   },
   parameters: {
     controls: { expanded: true },
@@ -68,7 +78,7 @@ export const Ground: Story = {
 
 export const Rock: Story = {
   args: {
-    type: TPokemonTypeEnum.Rock
+    type: TPokemonTypeEnum.Rock,
   },
   parameters: {
     controls: { expanded: true },
@@ -77,7 +87,7 @@ export const Rock: Story = {
 
 export const Bug: Story = {
   args: {
-    type: TPokemonTypeEnum.Bug
+    type: TPokemonTypeEnum.Bug,
   },
   parameters: {
     controls: { expanded: true },
@@ -86,7 +96,7 @@ export const Bug: Story = {
 
 export const Ghost: Story = {
   args: {
-    type: TPokemonTypeEnum.Ghost
+    type: TPokemonTypeEnum.Ghost,
   },
   parameters: {
     controls: { expanded: true },
@@ -95,7 +105,7 @@ export const Ghost: Story = {
 
 export const Steel: Story = {
   args: {
-    type: TPokemonTypeEnum.Steel
+    type: TPokemonTypeEnum.Steel,
   },
   parameters: {
     controls: { expanded: true },
@@ -104,7 +114,7 @@ export const Steel: Story = {
 
 export const Fire: Story = {
   args: {
-    type: TPokemonTypeEnum.Fire
+    type: TPokemonTypeEnum.Fire,
   },
   parameters: {
     controls: { expanded: true },
@@ -113,7 +123,7 @@ export const Fire: Story = {
 
 export const Water: Story = {
   args: {
-    type: TPokemonTypeEnum.Water
+    type: TPokemonTypeEnum.Water,
   },
   parameters: {
     controls: { expanded: true },
@@ -122,7 +132,7 @@ export const Water: Story = {
 
 export const Grass: Story = {
   args: {
-    type: TPokemonTypeEnum.Grass
+    type: TPokemonTypeEnum.Grass,
   },
   parameters: {
     controls: { expanded: true },
@@ -131,7 +141,7 @@ export const Grass: Story = {
 
 export const Electric: Story = {
   args: {
-    type: TPokemonTypeEnum.Electric
+    type: TPokemonTypeEnum.Electric,
   },
   parameters: {
     controls: { expanded: true },
@@ -140,7 +150,7 @@ export const Electric: Story = {
 
 export const Physical: Story = {
   args: {
-    type: TPokemonTypeEnum.Physical
+    type: TPokemonTypeEnum.Physical,
   },
   parameters: {
     controls: { expanded: true },
@@ -149,7 +159,7 @@ export const Physical: Story = {
 
 export const Ice: Story = {
   args: {
-    type: TPokemonTypeEnum.Ice
+    type: TPokemonTypeEnum.Ice,
   },
   parameters: {
     controls: { expanded: true },
@@ -158,17 +168,16 @@ export const Ice: Story = {
 
 export const Dragon: Story = {
   args: {
-    type: TPokemonTypeEnum.Dragon
+    type: TPokemonTypeEnum.Dragon,
   },
   parameters: {
     controls: { expanded: true },
   },
 };
 
-
 export const Dark: Story = {
   args: {
-    type: TPokemonTypeEnum.Dark
+    type: TPokemonTypeEnum.Dark,
   },
   parameters: {
     controls: { expanded: true },
@@ -177,7 +186,7 @@ export const Dark: Story = {
 
 export const Fairy: Story = {
   args: {
-    type: TPokemonTypeEnum.Fairy
+    type: TPokemonTypeEnum.Fairy,
   },
   parameters: {
     controls: { expanded: true },
@@ -186,7 +195,7 @@ export const Fairy: Story = {
 
 export const Unknown: Story = {
   args: {
-    type: TPokemonTypeEnum.Unknown
+    type: TPokemonTypeEnum.Unknown,
   },
   parameters: {
     controls: { expanded: true },
@@ -195,7 +204,7 @@ export const Unknown: Story = {
 
 export const Shadow: Story = {
   args: {
-    type: TPokemonTypeEnum.Shadow
+    type: TPokemonTypeEnum.Shadow,
   },
   parameters: {
     controls: { expanded: true },

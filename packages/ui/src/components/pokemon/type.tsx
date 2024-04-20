@@ -1,4 +1,3 @@
-
 import { TPokemonTypeEnum } from "@repo/types";
 
 export const pokemonTypeStyleVariants: Record<TPokemonTypeEnum, string> = {
@@ -24,9 +23,17 @@ export const pokemonTypeStyleVariants: Record<TPokemonTypeEnum, string> = {
   [TPokemonTypeEnum.Shadow]: "bg-[var(--pokemon-type-bg-shadow)]",
 };
 
-
-export default function PokemonTypeTagComponent({ type }: { type: TPokemonTypeEnum }): JSX.Element {
-  return <div className={`text-xs rounded-full ${pokemonTypeStyleVariants[type]} leading-3 py-1 px-2 text-white`} key={type}>
-    {type}
-  </div>
+export default function PokemonTypeTagComponent({
+  type,
+}: {
+  type: TPokemonTypeEnum;
+}): JSX.Element {
+  return (
+    <div
+      className={`text-xs rounded-full ${pokemonTypeStyleVariants[type]} leading-3 py-1 px-2 text-white`}
+      key={type}
+    >
+      {type}
+    </div>
+  );
 }
