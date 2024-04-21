@@ -8,8 +8,9 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     return {
       pageProps: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call -- from library
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- from library
         ...(Component.getInitialProps
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call -- from library
           ? await Component.getInitialProps(ctx)
           : {}),
       },

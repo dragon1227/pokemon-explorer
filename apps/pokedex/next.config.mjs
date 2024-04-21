@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
+  output: "standalone",
   reactStrictMode: true,
   transpilePackages: ["@repo/ui"],
   images: {
@@ -11,3 +12,5 @@ module.exports = {
     ],
   },
 };
+
+export default nextConfig;
