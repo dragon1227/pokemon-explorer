@@ -1,6 +1,7 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { getPokemonImage, parsePokemonId } from "@repo/utils";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
@@ -8,7 +9,6 @@ import Image from "next/image";
 import { fetchPokemons } from "@/store/pokemon/thunk";
 import useAppSelector from "@/hooks/use-app-selector";
 import useAppDispatch from "@/hooks/use-app-dispatch";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 export default function IndexPage() {
   const { items, page, limit, hasNext, isLoading, total } = useAppSelector(
@@ -89,24 +89,29 @@ export default function IndexPage() {
   };
 
   return (
-    <div className="w-full min-h-[80vh] h-[500px] p-4">
-      <DataGrid
-        columns={columns}
-        loading={isLoading}
-        onPaginationModelChange={onPagination}
-        pageSizeOptions={[10]}
-        pagination
-        paginationMeta={{
-          hasNextPage: hasNext,
-        }}
-        paginationMode="server"
-        paginationModel={{
-          page: page - 1,
-          pageSize: limit,
-        }}
-        rowCount={total}
-        rows={rows}
-      />
+    <div className="flex-1 p-4">
+      <div className="w-full flex items-center mb-2">
+        <Typography variant="h6">{total} Pokemons In Total</Typography>
+      </div>
+      <div className="h-[650px]">
+        <DataGrid
+          columns={columns}
+          loading={isLoading}
+          onPaginationModelChange={onPagination}
+          pageSizeOptions={[10]}
+          pagination
+          paginationMeta={{
+            hasNextPage: hasNext,
+          }}
+          paginationMode="server"
+          paginationModel={{
+            page: page - 1,
+            pageSize: limit,
+          }}
+          rowCount={total}
+          rows={rows}
+        />
+      </div>
     </div>
   );
 }
