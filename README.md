@@ -33,6 +33,7 @@ docker compose up -d
 Then you can browse the example apps on [Pokedex-redux](http://localhost:3000) and [Pokedex](http://localhost:3001)
 ![image](https://github.com/dragon1227/pokemon-explorer/assets/122885050/b5f1cdb3-19ce-4131-be47-28ac82771596)
 ![image](https://github.com/dragon1227/pokemon-explorer/assets/122885050/94203b23-fa79-4d15-b446-c8fd732757aa)
+![image](https://github.com/dragon1227/pokemon-explorer/assets/122885050/21972357-37d9-42b3-91e9-a5a54dccdaa3)
 
 
 And this project contains storybook for shared components defined in `@repo/ui` package
