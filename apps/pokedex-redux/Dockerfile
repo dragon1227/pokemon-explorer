@@ -36,6 +36,8 @@ RUN pnpm build --filter=pokedex-redux
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV production
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs

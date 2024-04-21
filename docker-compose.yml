@@ -6,19 +6,13 @@ services:
     build:
       context: .
       dockerfile: ./apps/pokedex-redux/Dockerfile
+      args:
+        NODE_ENV: production
+        NEXT_PUBLIC_API_URL: $NEXT_PUBLIC_API_URL
     ports:
       - 3000:3000
     networks:
       - local
-  # web:
-  #   container_name: web
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/pokedex/Dockerfile
-  #   ports:
-  #     - 3001:3000
-  #   networks:
-  #     - local
 
 networks:
   local:
