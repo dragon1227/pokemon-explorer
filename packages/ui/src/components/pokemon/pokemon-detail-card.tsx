@@ -66,7 +66,9 @@ export default function PokemonDetailCardComponent({
         <div className="flex flex-col space-y-1 w-full z-10 gap-1">
           {details.stats.map((stat) => (
             <div className="flex items-center" key={stat.name}>
-              <div className="font-bold text-sm leading-8 w-2/6 capitalize">{stat.name}</div>
+              <div className="font-bold text-sm leading-8 w-2/6 capitalize">
+                {stat.name}
+              </div>
               <div className="w-4/6 relative">
                 {stat.name === "total" ? (
                   stat.value

@@ -13,14 +13,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "storybook": "turbo storybook"
   },
-  "lint-staged": {
-    "packages/*.{js, jsx,ts,tsx}": [
-      "pnpm lint --quiet --fix"
-    ],
-    "packages/*.{json,js,ts,jsx,tsx,html}": [
-      "prettier --write --ignore-unknown"
-    ]
-  },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "dotenv-cli": "^7.4.1",
@@ -34,5 +26,8 @@
   "packageManager": "pnpm@9.0.4",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "shell-quote": "^1.8.1"
   }
 }
