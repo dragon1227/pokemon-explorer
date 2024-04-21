@@ -23,6 +23,7 @@ export default function IndexPage() {
     if (!items) {
       dispatch(fetchPokemons({ page, limit }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only first rendering
   }, []);
   useEffect(() => {
     if (items) {

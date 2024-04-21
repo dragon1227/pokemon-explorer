@@ -48,6 +48,7 @@ module.exports = {
     "import/no-default-export": "off",
     "no-nested-ternary": "off",
     "no-unused-vars": "off",
+    "no-console": "off",
     "react/hook-use-state": ["warn", { allowDestructuredState: true }],
     "react/button-has-type": "off",
     "@typescript-eslint/no-floating-promises": "off",

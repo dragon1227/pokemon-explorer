@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import sampleDetails from "./pokemon-detail.json";
 import PokemonDetailCardComponent from "@repo/ui/components/pokemon/pokemon-detail-card";
-import { TPokemonDetails } from "@repo/types";
+import type { TPokemonDetails } from "@repo/types";
+import sampleDetails from "./pokemon-detail.json";
 
 const meta: Meta<typeof PokemonDetailCardComponent> = {
   title: "UI/Pokemon/PokemonDetailCard",
@@ -43,7 +42,7 @@ export const BackButton: Story = {
   args: {
     details: sampleDetails as unknown as TPokemonDetails,
     onBackClick: () => {
-      console.log("BackClicked");
+      console.log('Back button clicked')
     },
   },
 };
