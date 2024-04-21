@@ -11,7 +11,8 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean && rm -rf .turbo && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "storybook": "turbo storybook"
+    "storybook": "turbo storybook",
+    "g:lint-staged-files": "lint-staged --allow-empty"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
