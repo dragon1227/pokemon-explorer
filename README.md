@@ -1,12 +1,15 @@
 # Pokedex
 
 This is Pokedex app built with NextJS, Typescript and Tailwindcss
+
 !!! Attention: `apps/pokedex-redux` is page router and `apps/pokedex` is web router
+
 Because the module `next-redux-wrapper` is only available for pages router of NextJS application, `pokedex-redux` is built with pages router and `@mui/x-data-grid` is used for first page
 
 ## Run this project
 
 This project uses pnpm@8.9.0 for package manager
+
 You should install this by running this command before run the project
 
 ```sh
@@ -33,6 +36,7 @@ Then you can browse the example apps on [Pokedex-redux](http://localhost:3000) a
 
 
 And this project contains storybook for shared components defined in `@repo/ui` package
+
 Storybook is defined in `@repo/web` (apps/pokedex)
 
 ```sh
@@ -44,6 +48,7 @@ Then you can browse the storybook on [Storybook](http://localhost:6006)
 ## What kind of this project?
 
 This project is monorepo powered by [Turborepo](http://turbo.build) including apps and packages
+
 They share config files for typescript, eslint, tailwindcss
 
 ## What's inside?
