@@ -1,12 +1,10 @@
 import App from "next/app";
-import { withRouter } from "next/router";
-import NavbarComponent from "@repo/ui/components/common/layout/navbar";
+import { ThemeProvider } from "next-themes";
 import wrapper from "@/store";
 import "@/styles/globals.css";
 import "@repo/ui/styles.css";
 import RootLayoutComponent from "@/components/layout";
 import Providers from "./proviers";
-import { ThemeProvider } from "next-themes";
 
 class MyApp extends App {
   // @ts-expect-error

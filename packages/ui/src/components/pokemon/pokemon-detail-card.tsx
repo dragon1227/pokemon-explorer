@@ -56,18 +56,18 @@ export default function PokemonDetailCardComponent({
               <PokemonTypeTagComponent key={type.name} type={type.name} />
             ))}
           </div>
-          <div className="col-span-1">Name:</div>
+          <div className="col-span-1 font-bold text-sm">Name:</div>
           <div className="col-span-3 capitalize">{details.name}</div>
-          <div className="col-span-1">Height:</div>
+          <div className="col-span-1 font-bold text-sm">Height:</div>
           <div className="col-span-3">{details.height} m</div>
-          <div className="col-span-1">Weight:</div>
+          <div className="col-span-1 font-bold text-sm">Weight:</div>
           <div className="col-span-3">{details.weight} Kg</div>
         </div>
-        <div className="flex flex-col space-y-1 w-full z-10">
+        <div className="flex flex-col space-y-1 w-full z-10 gap-1">
           {details.stats.map((stat) => (
             <div className="flex items-center" key={stat.name}>
-              <div className="col-span-1 w-2/6 capitalize">{stat.name}</div>
-              <div className="col-span-3 w-4/6 relative">
+              <div className="font-bold text-sm leading-8 w-2/6 capitalize">{stat.name}</div>
+              <div className="w-4/6 relative">
                 {stat.name === "total" ? (
                   stat.value
                 ) : (
