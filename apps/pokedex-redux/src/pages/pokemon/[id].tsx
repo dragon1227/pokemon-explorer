@@ -3,7 +3,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
 import { ChevronLeftRounded } from "@mui/icons-material";
-import { IconButton, Typography } from "@mui/material";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
 import { fetchPokemonDetail } from "@/store/pokemon/thunk";
 import PokemonDetailCardComponent from "@repo/ui/components/pokemon/pokemon-detail-card";
 import useAppSelector from "@/hooks/use-app-selector";
@@ -38,7 +38,7 @@ export default function PokemonPage() {
         </Typography>
       </div>
       {!details ? (
-        <>Loading</>
+        <div className="m-auto"><CircularProgress /></div>
       ) : (
         <div className="mx-auto mt-32">
           <PokemonDetailCardComponent

@@ -1,6 +1,6 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
-import { IconButton, Typography } from "@mui/material";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { getPokemonImage, parsePokemonId } from "@repo/utils";
 import { useRouter } from "next/router";
@@ -91,6 +91,10 @@ export default function IndexPage() {
   return (
     <div className="flex-1 p-4">
       <div className="w-full flex items-center mb-2">
+        {isLoading ?
+          <CircularProgress /> :
+          null
+        }
         <Typography variant="h6">{total} Pokemons In Total</Typography>
       </div>
       <div className="h-[650px]">
