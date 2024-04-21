@@ -1,7 +1,5 @@
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import type { TBasicItem, TPokemonDetails } from "@repo/types";
-// eslint-disable-next-line import/no-cycle -- mixed definitions
 import { fetchPokemons, fetchPokemonDetail } from "./thunk";
 
 export interface IPokemonState {
@@ -32,29 +30,24 @@ const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: pokemonInitialState,
   reducers: {
-    addPokemon: (state, action: PayloadAction<TPokemonDetails>) => {
-      state.pokemons[action.payload.id] = action.payload;
-    },
-    setPagination: (
-      state,
-      action: PayloadAction<{ page: number; limit: number; total?: number }>,
-    ) => {
-      state.page = action.payload.page;
-      state.limit = action.payload.limit;
-      if (action.payload.total && action.payload.total > 0)
-        state.total = action.payload.total;
-    },
+    // no reducer actions needed currently
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPokemons.fulfilled, (state, { payload }) => {
-      state.items = payload.results ?? null;
-      state.hasNext = payload.hasNext;
-      state.hasPrev = payload.hasPrev;
-      state.isLoading = false;
-    });
-    builder.addCase(fetchPokemons.pending, (state) => {
+    builder.addCase(fetchPokemons.pending, (state, { meta }) => {
+      const { page, limit } = meta.arg;
       state.items = null;
       state.isLoading = true;
+      state.page = page;
+      state.limit = limit;
+    });
+    builder.addCase(fetchPokemons.fulfilled, (state, { payload }) => {
+      const { results, message, hasNext, hasPrev, total } = payload;
+      state.items = results ?? null;
+      state.hasNext = hasNext;
+      state.hasPrev = hasPrev;
+      state.total = total;
+      state.error = message ?? null;
+      state.isLoading = false;
     });
     builder.addCase(fetchPokemons.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -69,7 +62,5 @@ const pokemonSlice = createSlice({
     });
   },
 });
-
-export const { addPokemon, setPagination } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;
