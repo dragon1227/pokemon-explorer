@@ -1,39 +1,26 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
-import type {
-  TBasicItem,
-  TPokemonDetails,
-  TPokemonTypeEnum,
-} from "@repo/types";
 import Button from "@repo/ui/components/common/button";
-import PokemonTypeTagComponent from "@repo/ui/components/pokemon/type";
-import { parsePokemonId } from "@repo/utils";
+import { getPokemonImage, parsePokemonId } from "@repo/utils";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
 import Image from "next/image";
-import { fetchPokemonDetail, fetchPokemons } from "@/store/pokemon/thunk";
+import { fetchPokemons } from "@/store/pokemon/thunk";
 import useAppSelector from "@/hooks/use-app-selector";
 import useAppDispatch from "@/hooks/use-app-dispatch";
 
 export default function IndexPage() {
-  const { items, pokemons, page, limit, hasNext, hasPrev, isLoading, total } =
-    useAppSelector((state) => state.pokemon);
+  const { items, page, limit, hasNext, isLoading, total } = useAppSelector(
+    (state) => state.pokemon,
+  );
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     if (!items) {
       dispatch(fetchPokemons({ page, limit }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only first rendering
   }, []);
-  useEffect(() => {
-    if (items) {
-      items.forEach((item) => {
-        const id = parsePokemonId(item.url);
-        if (id && !Object.keys(pokemons).includes(String(id)))
-          dispatch(fetchPokemonDetail(id));
-      });
-    }
-  }, [dispatch, items, pokemons]);
 
   const router = useRouter();
 
@@ -57,34 +44,6 @@ export default function IndexPage() {
       },
     },
     { field: "name", headerName: "Name", width: 150 },
-    { field: "height", headerName: "Height (m)", width: 150 },
-    { field: "weight", headerName: "Weight (kg)", width: 150 },
-    {
-      field: "types",
-      headerName: "Type",
-      width: 150,
-      renderCell(params) {
-        return (
-          <div className="flex items-center h-full gap-1">
-            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access -- no need to worry */}
-            {params.value?.map((type: TBasicItem<TPokemonTypeEnum>) => (
-              <PokemonTypeTagComponent key={type.name} type={type.name} />
-            ))}
-          </div>
-        );
-      },
-    },
-    {
-      field: "stats",
-      headerName: "Total Stats",
-      width: 150,
-      renderCell(params) {
-        if (!params.value) return null;
-        const stats = params.value as TPokemonDetails["stats"];
-        const totalValue = stats.find((item) => item.name === "total")?.value;
-        return <div>{totalValue}</div>;
-      },
-    },
     {
       field: "action",
       headerName: "Action",
@@ -104,17 +63,18 @@ export default function IndexPage() {
       },
     },
   ];
+
   const rows = useMemo(() => {
     return (
       items?.map((item, idx) => {
         const id = parsePokemonId(item.url);
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- should check
-        return id && pokemons[id]
-          ? pokemons[id]
-          : { id: id ?? idx, name: item.name, paddedId: id };
+        return id
+          ? { id, name: item.name, imgSrc: getPokemonImage(id) }
+          : { id: idx, name: item.name, imgSrc: null };
       }) ?? []
     );
-  }, [items, pokemons]);
+  }, [items]);
+
   const onPagination = ({
     pageSize,
     page: _page,
@@ -124,6 +84,7 @@ export default function IndexPage() {
   }) => {
     dispatch(fetchPokemons({ page: _page + 1, limit: pageSize }));
   };
+
   return (
     <div className="w-full h-[800px] p-4">
       <DataGrid

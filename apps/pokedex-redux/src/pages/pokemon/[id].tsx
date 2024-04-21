@@ -1,7 +1,6 @@
 "use client";
 
 import PokemonDetailCardComponent from "@repo/ui/components/pokemon/pokemon-detail-card";
-import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
 import { fetchPokemonDetail } from "@/store/pokemon/thunk";
@@ -11,8 +10,7 @@ import useAppDispatch from "@/hooks/use-app-dispatch";
 export default function PokemonPage() {
   const router = useRouter();
   const { id: _id } = router.query;
-  const id: number | undefined =
-    _id instanceof Array ? Number(_id[0]) : Number(_id);
+  const id = _id instanceof Array ? Number(_id[0]) : Number(_id);
   const { pokemons } = useAppSelector((state) => state.pokemon);
   const dispatch = useAppDispatch();
 
@@ -21,10 +19,8 @@ export default function PokemonPage() {
   }, [pokemons, id]);
 
   useEffect(() => {
-    if (id) {
-      if (!details) dispatch(fetchPokemonDetail(id));
-    }
-  }, [id, details, dispatch]);
+    if (!Object.keys(pokemons).includes(String(id))) dispatch(fetchPokemonDetail(id));
+  }, [id, pokemons, dispatch]);
 
   const onBackClick = () => {
     router.push("/");

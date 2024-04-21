@@ -52,5 +52,6 @@ module.exports = {
     "react/hook-use-state": ["warn", { allowDestructuredState: true }],
     "react/button-has-type": "off",
     "@typescript-eslint/no-floating-promises": "off",
+    "@next/next/no-html-link-for-pages": "off",
   },
 };

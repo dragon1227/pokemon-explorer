@@ -14,10 +14,10 @@
     "storybook": "turbo storybook"
   },
   "lint-staged": {
-    "*.{js, jsx,ts,tsx}": [
-      "eslint --quiet --fix"
+    "packages/*.{js, jsx,ts,tsx}": [
+      "pnpm lint --quiet --fix"
     ],
-    "*.{json,js,ts,jsx,tsx,html}": [
+    "packages/*.{json,js,ts,jsx,tsx,html}": [
       "prettier --write --ignore-unknown"
     ]
   },
