@@ -8,12 +8,12 @@ Because the module `next-redux-wrapper` is only available for pages router of Ne
 
 ## Run this project
 
-This project uses pnpm@8.9.0 for package manager
+This project uses pnpm@9.0.4 for package manager
 
 You should install this by running this command before run the project
 
 ```sh
-npm install -g pnpm@8.9.0
+npm install -g pnpm@9.0.4
 ```
 
 Run the following command:
