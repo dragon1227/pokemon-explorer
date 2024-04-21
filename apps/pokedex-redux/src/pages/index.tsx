@@ -1,6 +1,6 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
-import Button from "@repo/ui/components/common/button";
+import { IconButton } from "@mui/material";
 import { getPokemonImage, parsePokemonId } from "@repo/utils";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import { fetchPokemons } from "@/store/pokemon/thunk";
 import useAppSelector from "@/hooks/use-app-selector";
 import useAppDispatch from "@/hooks/use-app-dispatch";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 export default function IndexPage() {
   const { items, page, limit, hasNext, isLoading, total } = useAppSelector(
@@ -25,11 +26,11 @@ export default function IndexPage() {
   const router = useRouter();
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 20 },
+    { field: "id", headerName: "ID", width: 50 },
     {
       field: "imgSrc",
       headerName: "Image",
-      width: 20,
+      width: 100,
       renderCell(params) {
         return (
           <Image
@@ -43,22 +44,24 @@ export default function IndexPage() {
         );
       },
     },
-    { field: "name", headerName: "Name", width: 150 },
+    {
+      field: "name", headerName: "Name", flex: 1, renderCell(params) {
+        return (<span className="capitalize font-bold">{params.value}</span>)
+      }
+    },
     {
       field: "action",
       headerName: "Action",
       width: 150,
       renderCell(params) {
         return (
-          <Button
-            className="p-1 leading-3"
+          <IconButton
             onClick={() => {
               router.push(`/pokemon/${params.id}`);
             }}
-            variant="none"
           >
-            View
-          </Button>
+            <RemoveRedEyeIcon />
+          </IconButton>
         );
       },
     },
@@ -86,7 +89,7 @@ export default function IndexPage() {
   };
 
   return (
-    <div className="w-full h-[800px] p-4">
+    <div className="w-full min-h-[80vh] h-[500px] p-4">
       <DataGrid
         columns={columns}
         loading={isLoading}
