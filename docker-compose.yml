@@ -1,15 +1,6 @@
 version: "3"
 
 services:
-  web:
-    container_name: web
-    build:
-      context: .
-      dockerfile: ./apps/pokedex/Dockerfile
-    ports:
-      - 3001:3000
-    networks:
-      - local
   pokedex-redux:
     container_name: pokedex-redux
     build:
@@ -19,6 +10,15 @@ services:
       - 3000:3000
     networks:
       - local
+  # web:
+  #   container_name: web
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/pokedex/Dockerfile
+  #   ports:
+  #     - 3001:3000
+  #   networks:
+  #     - local
 
 networks:
   local:
