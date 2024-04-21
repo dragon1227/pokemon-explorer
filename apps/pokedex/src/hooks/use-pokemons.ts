@@ -29,7 +29,7 @@ export const usePokemons = ({
       getPokemonListRequest({ limit, offset }).then((res) => {
         setTotal(res?.count);
         setHasMore([Boolean(res?.previous), Boolean(res?.next)]);
-        return res?.results as TBasicItem[];
+        return res?.results ?? ([] as TBasicItem[]);
       }),
     enabled: page > 0,
   });

@@ -1,6 +1,7 @@
 import type { GridColDef } from "@mui/x-data-grid";
 import { DataGrid } from "@mui/x-data-grid";
-import Button from "@repo/ui/components/common/button";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { getPokemonImage, parsePokemonId } from "@repo/utils";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
@@ -25,11 +26,11 @@ export default function IndexPage() {
   const router = useRouter();
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 20 },
+    { field: "id", headerName: "ID", width: 50 },
     {
       field: "imgSrc",
       headerName: "Image",
-      width: 20,
+      width: 100,
       renderCell(params) {
         return (
           <Image
@@ -43,22 +44,24 @@ export default function IndexPage() {
         );
       },
     },
-    { field: "name", headerName: "Name", width: 150 },
+    {
+      field: "name", headerName: "Name", flex: 1, renderCell(params) {
+        return (<span className="capitalize font-bold">{params.value}</span>)
+      }
+    },
     {
       field: "action",
       headerName: "Action",
       width: 150,
       renderCell(params) {
         return (
-          <Button
-            className="p-1 leading-3"
+          <IconButton
             onClick={() => {
               router.push(`/pokemon/${params.id}`);
             }}
-            variant="none"
           >
-            View
-          </Button>
+            <RemoveRedEyeIcon />
+          </IconButton>
         );
       },
     },
@@ -86,24 +89,33 @@ export default function IndexPage() {
   };
 
   return (
-    <div className="w-full h-[800px] p-4">
-      <DataGrid
-        columns={columns}
-        loading={isLoading}
-        onPaginationModelChange={onPagination}
-        pageSizeOptions={[10]}
-        pagination
-        paginationMeta={{
-          hasNextPage: hasNext,
-        }}
-        paginationMode="server"
-        paginationModel={{
-          page: page - 1,
-          pageSize: limit,
-        }}
-        rowCount={total}
-        rows={rows}
-      />
+    <div className="flex-1 p-4">
+      <div className="w-full flex items-center mb-2">
+        {isLoading ?
+          <CircularProgress /> :
+          null
+        }
+        <Typography variant="h6">{total} Pokemons In Total</Typography>
+      </div>
+      <div className="h-[650px]">
+        <DataGrid
+          columns={columns}
+          loading={isLoading}
+          onPaginationModelChange={onPagination}
+          pageSizeOptions={[10]}
+          pagination
+          paginationMeta={{
+            hasNextPage: hasNext,
+          }}
+          paginationMode="server"
+          paginationModel={{
+            page: page - 1,
+            pageSize: limit,
+          }}
+          rowCount={total}
+          rows={rows}
+        />
+      </div>
     </div>
   );
 }

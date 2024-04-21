@@ -10,6 +10,7 @@ const config: Omit<Config, "content"> = {
       },
     },
   },
+  darkMode: "class",
   plugins: [],
 };
 export default config;

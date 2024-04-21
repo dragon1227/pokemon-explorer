@@ -1,7 +1,12 @@
 import App from "next/app";
+import { withRouter } from "next/router";
+import NavbarComponent from "@repo/ui/components/common/layout/navbar";
 import wrapper from "@/store";
 import "@/styles/globals.css";
 import "@repo/ui/styles.css";
+import RootLayoutComponent from "@/components/layout";
+import Providers from "./proviers";
+import { ThemeProvider } from "next-themes";
 
 class MyApp extends App {
   // @ts-expect-error
@@ -19,14 +24,13 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <div className="min-h-screen w-full flex flex-col">
-        <header className="sticky flex items-center top-0 z-50 w-full p-4 h-14 bg-slate-500/30 backdrop-blur-lg border-b border-slate-300/30">
-          <div className="uppercase text-white font-black text-xl">PokeDeX</div>
-        </header>
-        <main className="flex flex-col items-center w-full flex-1 justify-between">
-          <Component {...pageProps} />
-        </main>
-      </div>
+      <ThemeProvider attribute="class" defaultTheme="light">
+        <Providers>
+          <RootLayoutComponent>
+            <Component {...pageProps} />
+          </RootLayoutComponent>
+        </Providers>
+      </ThemeProvider>
     );
   }
 }

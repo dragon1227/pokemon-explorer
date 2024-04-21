@@ -1,7 +1,7 @@
-export type TPokemonAPIPaginatedRequest = {
+export interface TPokemonAPIPaginatedRequest {
   offset: number | undefined;
   limit: number | undefined;
-};
+}
 
 export enum TPokemonAPIEndpointEnum {
   Pokemon = "pokemon",

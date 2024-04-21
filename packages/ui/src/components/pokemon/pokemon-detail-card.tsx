@@ -10,7 +10,7 @@ export default function PokemonDetailCardComponent({
   onBackClick?: () => void;
 }): JSX.Element {
   return (
-    <div className="bg-slate-400 rounded-3xl w-64 lg:w-80 text-white flex flex-col items-center gap-2 relative">
+    <div className="bg-slate-400/30 dark:bg-slate-800/30 backdrop-blur-lg border shadow-md dark:border-slate-500/30 border-slate-400/30 rounded-3xl w-64 lg:w-80 text-slate-600 dark:text-white flex flex-col items-center gap-2 relative">
       <div
         className={`w-full relative h-40 flex justify-center z-0 ${pokemonTypeStyleVariants[details.types[0].name]} !bg-opacity-30 rounded-t-3xl`}
       >
@@ -47,7 +47,7 @@ export default function PokemonDetailCardComponent({
       <div className="flex flex-col items-center gap-2 w-full p-4 relative">
         <img
           alt="pokeball"
-          className="absolute opacity-10 w-full h-full top-0 left-0 z-0"
+          className="absolute opacity-15 dark:opacity-5 w-full h-full top-0 left-0 z-0"
           src="/pokeball.svg"
         />
         <div className="grid grid-cols-4 gap-y-1 w-full z-10">
@@ -71,9 +71,9 @@ export default function PokemonDetailCardComponent({
                 {stat.name === "total" ? (
                   stat.value
                 ) : (
-                  <div className="bg-white w-full h-2 rounded-full">
+                  <div className="bg-white dark:bg-slate-900 w-full h-2 rounded-full">
                     <div
-                      className="bg-slate-700 h-full rounded-[1rem]"
+                      className="bg-slate-700 dark:bg-slate-300 h-full rounded-[1rem]"
                       style={{ width: `${(100 * stat.value) / stat.max}%` }}
                     />
                   </div>

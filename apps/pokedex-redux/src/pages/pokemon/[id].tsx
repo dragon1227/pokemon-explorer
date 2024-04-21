@@ -1,9 +1,11 @@
 "use client";
 
-import PokemonDetailCardComponent from "@repo/ui/components/pokemon/pokemon-detail-card";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
+import { ChevronLeftRounded } from "@mui/icons-material";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
 import { fetchPokemonDetail } from "@/store/pokemon/thunk";
+import PokemonDetailCardComponent from "@repo/ui/components/pokemon/pokemon-detail-card";
 import useAppSelector from "@/hooks/use-app-selector";
 import useAppDispatch from "@/hooks/use-app-dispatch";
 
@@ -26,14 +28,23 @@ export default function PokemonPage() {
     router.push("/");
   };
   return (
-    <div className="flex flex-col justify-center items-center w-screen flex-1 p-4">
+    <div className="flex-1 flex flex-col p-4">
+      <div className="flex items-center gap-4">
+        <IconButton onClick={onBackClick}>
+          <ChevronLeftRounded />
+        </IconButton>
+        <Typography>
+          Back
+        </Typography>
+      </div>
       {!details ? (
-        <>Loading</>
+        <div className="m-auto"><CircularProgress /></div>
       ) : (
-        <PokemonDetailCardComponent
-          details={details}
-          onBackClick={onBackClick}
-        />
+        <div className="mx-auto mt-32">
+          <PokemonDetailCardComponent
+            details={details}
+          />
+        </div>
       )}
     </div>
   );
