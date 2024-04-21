@@ -11,15 +11,8 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean && rm -rf .turbo && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "storybook": "turbo storybook"
-  },
-  "lint-staged": {
-    "packages/*.{js, jsx,ts,tsx}": [
-      "pnpm lint --quiet --fix"
-    ],
-    "packages/*.{json,js,ts,jsx,tsx,html}": [
-      "prettier --write --ignore-unknown"
-    ]
+    "storybook": "turbo storybook",
+    "g:lint-staged-files": "lint-staged --allow-empty"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
@@ -34,5 +27,8 @@
   "packageManager": "pnpm@9.0.4",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "shell-quote": "^1.8.1"
   }
 }
