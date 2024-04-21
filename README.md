@@ -44,6 +44,8 @@ pnpm storybook
 ```
 
 Then you can browse the storybook on [Storybook](http://localhost:6006)
+![image](https://github.com/dragon1227/pokemon-explorer/assets/122885050/1735c3a9-8c0f-40cd-ac6a-733418153952)
+
 
 ## What kind of this project?
 
