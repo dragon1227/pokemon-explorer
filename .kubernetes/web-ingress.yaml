@@ -12,13 +12,13 @@ spec:
       port:
         number: 3000
   rules:
-  - host: gameroguetest.com
-    http:
-      paths:
-      - path: /*
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: web-service
-            port:
-              number: 3000
+    - host: pokedextest.com
+      http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: web-service
+                port:
+                  number: 3000
