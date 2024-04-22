@@ -21,29 +21,28 @@ export default function PokemonPage() {
   }, [pokemons, id]);
 
   useEffect(() => {
-    if (!Object.keys(pokemons).includes(String(id))) dispatch(fetchPokemonDetail(id));
+    if (!Object.keys(pokemons).includes(String(id)))
+      dispatch(fetchPokemonDetail(id));
   }, [id, pokemons, dispatch]);
 
   const onBackClick = () => {
     router.push("/");
   };
   return (
-    <div className="flex-1 flex flex-col p-4">
+    <div className="flex flex-col">
       <div className="flex items-center gap-4">
         <IconButton onClick={onBackClick}>
           <ChevronLeftRounded />
         </IconButton>
-        <Typography>
-          Back
-        </Typography>
+        <Typography>Back</Typography>
       </div>
       {!details ? (
-        <div className="m-auto"><CircularProgress /></div>
+        <div className="m-auto">
+          <CircularProgress />
+        </div>
       ) : (
         <div className="mx-auto mt-32">
-          <PokemonDetailCardComponent
-            details={details}
-          />
+          <PokemonDetailCardComponent details={details} />
         </div>
       )}
     </div>
